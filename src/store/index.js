@@ -4,7 +4,7 @@ import {
   createSlice,
 } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { TMDB_BASE_URL, API_KEY } from '../utils/constants';
+import { TMDB_BASE_URL } from '../utils/constants';
 
 const initialState = {
   movies: [],
@@ -15,7 +15,7 @@ const initialState = {
 export const getGenres = createAsyncThunk('netflix/genres', async () => {
   const {
     data: { genres },
-  } = await axios.get(`${TMDB_BASE_URL}/genre/movie/list?api_key=${API_KEY}`);
+  } = await axios.get(`${TMDB_BASE_URL}/genre/movie/list?api_key=${process.env.REACT_APP_TMD_API_KEY}`);
   return genres;
 });
 
@@ -59,7 +59,7 @@ export const getMovies = createAsyncThunk(
       netflix: { genres },
     } = ThunkApi.getState();
     return getRawData(
-      `${TMDB_BASE_URL}/trending/${type}/week?api_key=${API_KEY}`,
+      `${TMDB_BASE_URL}/trending/${type}/week?api_key=${process.env.REACT_APP_TMD_API_KEY}`,
       genres,
       true,
     );

@@ -1,31 +1,31 @@
-import React from 'react';
+import React, { memo } from 'react';
 import CardSlider from './CardSlider';
 
-export default function Slider({ movies }) {
+export default memo(function Slider({ movies }) {
   const getMoviesFromRange = (from, to) => {
     return movies.slice(from, to);
   };
-
+  console.log(movies);
   return (
     <div>
-      <CardSlider title='Trending Now' data={() => getMoviesFromRange(0, 10)} />
+      <CardSlider title='Trending Now' data={getMoviesFromRange(0, 10)} />
       <CardSlider
         title='New Releases'
-        data={() => getMoviesFromRange(10, 20)}
+        data={getMoviesFromRange(10, 20)}
       />
       <CardSlider
         title='BlockBuster Movies'
-        data={() => getMoviesFromRange(20, 30)}
+        data={getMoviesFromRange(20, 30)}
       />
       <CardSlider
         title='Popular On Netflix'
-        data={() => getMoviesFromRange(30, 40)}
+        data={getMoviesFromRange(30, 40)}
       />
       <CardSlider
         title='Action Movies'
-        data={() => getMoviesFromRange(40, 50)}
+        data={getMoviesFromRange(40, 50)}
       />
-      <CardSlider title='Epics' data={() => getMoviesFromRange(50, 60)} />
+      <CardSlider title='Epics' data={getMoviesFromRange(50, 60)} />
     </div>
   );
-}
+})
